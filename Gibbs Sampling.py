@@ -17,6 +17,8 @@ def neighbour(i,j):
         neigh[3] = [i,1]
     return neigh
 
+# This sampling is for Ising model with binary variables for 
+#  a 2-D grid with toroidal (donut-like) boundary conditions
 
 def generate_toroidal(k):
     Mat = np.zeros((k**2,k**2))
@@ -55,6 +57,7 @@ def Gibbs(Mat, theta_s, theta_st, burnIn, num):
     return samples
 
 
+# Naive mean field method
 def Naive_Mean(Mat, theta_s, theta_st):
     n = Mat.shape[0]
     X = np.ones((n,1))
@@ -71,6 +74,7 @@ def Naive_Mean(Mat, theta_s, theta_st):
         i +=1
     return X
 
+# Generate the example when k = 7
 Mat = generate_toroidal(7)
 theta_s = [(-1)**k for k in range(1,50,1)]
 theta_st = 0.25
